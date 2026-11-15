@@ -1,98 +1,84 @@
-# KanbanTask - Система управления задачами
+# KanbanTask
 
-Современная система управления задачами в формате канбан-доски с real-time обновлениями.
+Kanban board with real-time updates.
 
-## 🚀 Технологии
+## Stack
 
-- **Frontend**: Next.js 14, TypeScript, Tailwind CSS
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB
-- **Real-time**: Socket.io
-- **Authentication**: JWT
-- **File Upload**: Multer
-- **Deployment**: Docker
+- Frontend: Next.js 14, TypeScript, Tailwind CSS
+- Backend: Node.js, Express
+- Database: MongoDB
+- Real-time: Socket.io
+- Authentication: JWT
+- File uploads: Multer
+- Deployment: Docker
 
-## 📋 Функционал
+## Features
 
-- ✅ Регистрация и авторизация пользователей
-- ✅ Создание и управление досками
-- ✅ Drag & Drop для задач между колонками
-- ✅ Real-time обновления
-- ✅ Комментарии к задачам
-- ✅ Загрузка файлов
-- ✅ Управление участниками досок
-- ✅ Приоритеты и сроки выполнения
+- User registration and login
+- Boards and columns
+- Drag and drop of tasks between columns
+- Real-time updates
+- Task comments
+- File uploads
+- Board members
+- Task priorities and due dates
 
-## 🛠 Установка и запуск
+## Running
 
-### С Docker (рекомендуется)
+With Docker:
 
-\`\`\`bash
-# Клонировать репозиторий
+```bash
 git clone <repository-url>
 cd kanbantask
-
-# Запустить с Docker
 docker-compose up --build
-\`\`\`
+```
 
-Приложение будет доступно:
-- Frontend: http://localhost:3000
-- Backend: http://localhost:5000
+The frontend is available at http://localhost:3000 and the backend at http://localhost:5000.
 
-### Локальная разработка
+Local development:
 
-\`\`\`bash
-# Backend
+```bash
+# backend
 cd backend
 npm install
 npm run dev
 
-# Frontend (в новом терминале)
+# frontend (in a second terminal)
 cd frontend
 npm install
 npm run dev
-\`\`\`
+```
 
-## 🗄 База данных
+## Data model
 
-Проект использует 5 основных моделей:
-- **User** - пользователи
-- **Board** - доски
-- **Column** - колонки
-- **Task** - задачи
-- **Comment** - комментарии
+Five collections: User, Board, Column, Task, Comment.
 
-## 🔐 Переменные окружения
+## Environment variables
 
-### Backend (.env)
-\`\`\`
+Backend (.env):
+
+```
 PORT=5000
 MONGODB_URI=mongodb://localhost:27017/kanbantask
 JWT_SECRET=your-secret-key
 FRONTEND_URL=http://localhost:3000
 UPLOAD_PATH=./uploads
 MAX_FILE_SIZE=5242880
-\`\`\`
+```
 
-### Frontend (.env.local)
-\`\`\`
+Frontend (.env.local):
+
+```
 NEXT_PUBLIC_API_URL=http://localhost:5000/api
 NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
-\`\`\`
+```
 
-## 📁 Структура проекта
+## Project structure
 
-\`\`\`
+```
 kanbantask/
-├── frontend/          # Next.js приложение
-├── backend/           # Express.js API
-├── docker-compose.yml # Docker конфигурация
-└── README.md
-\`\`\`
-
-## 🧪 Тестирование
-
-Для тестирования используйте тестовый аккаунт:
-- Email: test@example.com
-- Password: 123456
+  frontend/            Next.js app
+  backend/             Express API
+  docker-compose.yml
+  README.md
+```
