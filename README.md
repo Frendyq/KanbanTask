@@ -25,18 +25,19 @@ Kanban board with real-time updates.
 
 ## Running
 
-Create the backend configuration from the example and set your own JWT secret:
-
-```bash
-cp backend/.env.example backend/.env
-```
-
-With Docker:
+With Docker. Create the configuration file from the example and set your own values:
 
 ```bash
 git clone <repository-url>
 cd kanbantask
+cp .env.example .env
 docker-compose up --build
+```
+
+For local development without Docker, create the backend configuration from its example:
+
+```bash
+cp backend/.env.example backend/.env
 ```
 
 The frontend is available at http://localhost:3000 and the backend at http://localhost:5000.
