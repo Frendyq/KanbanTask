@@ -25,6 +25,12 @@ Kanban board with real-time updates.
 
 ## Running
 
+Create the backend configuration from the example and set your own JWT secret:
+
+```bash
+cp backend/.env.example backend/.env
+```
+
 With Docker:
 
 ```bash
@@ -53,25 +59,9 @@ npm run dev
 
 Five collections: User, Board, Column, Task, Comment.
 
-## Environment variables
+## Configuration
 
-Backend (.env):
-
-```
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/kanbantask
-JWT_SECRET=your-secret-key
-FRONTEND_URL=http://localhost:3000
-UPLOAD_PATH=./uploads
-MAX_FILE_SIZE=5242880
-```
-
-Frontend (.env.local):
-
-```
-NEXT_PUBLIC_API_URL=http://localhost:5000/api
-NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
-```
+Backend settings are read from backend/.env (see backend/.env.example for the list). The frontend needs NEXT_PUBLIC_API_URL and NEXT_PUBLIC_BACKEND_URL in frontend/.env.local, pointing to the backend.
 
 ## Project structure
 
