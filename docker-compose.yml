@@ -1,12 +1,12 @@
 services:
-  # MongoDB сервис
+  # MongoDB
   mongodb:
     image: mongo:7.0
     container_name: kanbantask-mongodb
     restart: unless-stopped
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
-      MONGO_INITDB_ROOT_PASSWORD: password123
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:?set MONGO_ROOT_PASSWORD in the .env file}
       MONGO_INITDB_DATABASE: kanbantask
     ports:
       - "27017:27017"
@@ -22,7 +22,7 @@ services:
       retries: 5
       start_period: 30s
 
-  # Основное приложение (Frontend + Backend)
+  # Application (frontend and backend)
   app:
     build: 
       context: .
@@ -36,10 +36,10 @@ services:
       PORT: 5000
       
       # Database
-      MONGODB_URI: mongodb://admin:password123@mongodb:27017/kanbantask?authSource=admin
+      MONGODB_URI: mongodb://admin:${MONGO_ROOT_PASSWORD}@mongodb:27017/kanbantask?authSource=admin
       
       # JWT Configuration
-      JWT_SECRET: your-super-secret-jwt-key-change-this-in-production-2024
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in the .env file}
       JWT_EXPIRES_IN: 7d
       
       # URLs
@@ -68,7 +68,7 @@ services:
       retries: 3
       start_period: 60s
 
-  # Nginx для production (опционально)
+  # Nginx for production (optional)
   nginx:
     image: nginx:alpine
     container_name: kanbantask-nginx
@@ -86,7 +86,7 @@ services:
     profiles:
       - production
 
-# Именованные тома для персистентности данных
+# Named volumes for persistent data
 volumes:
   mongodb_data:
     driver: local
@@ -95,7 +95,7 @@ volumes:
   logs_data:
     driver: local
 
-# Сеть для связи между контейнерами
+# Network for the containers
 networks:
   kanbantask-network:
     driver: bridge
